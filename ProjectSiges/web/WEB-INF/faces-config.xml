@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <!--Reglas pra profesor-->
+    <navigation-rule> 
+        <from-view-id>/pages/gestionAdministracion/profesor/crearProfesor.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>indice</from-outcome>
+            <to-view-id>/pages/gestionAdministracion/profesor/listarProfesorIngreso.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/pages/gestionAdministracion/profesor/listarProfesorIngreso.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regreso</from-outcome>
+            <to-view-id>/pages/gestionAdministracion/profesor/crearProfesor.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+    
+    <!--Reglas pra facultad-->
+    <navigation-rule> 
+        <from-view-id>/pages/gestionAdministracion/facultad/crearFacultad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>indice</from-outcome>
+            <to-view-id>/pages/gestionAdministracion/facultad/listarFacultadIngreso.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/pages/gestionAdministracion/facultad/listarFacultadIngreso.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regreso</from-outcome>
+            <to-view-id>/pages/gestionAdministracion/facultad/crearFacultad.xhtml</to-view-id>
+        </navigation-case>    
+    </navigation-rule>
+
+</faces-config>

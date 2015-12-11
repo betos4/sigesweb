@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <ui:composition template="/plantillas/plantilla.xhtml">
+        <ui:define name="content">
+            <div id="subContent1">
+                <div class="loginIzquierda">
+
+
+
+                    <h:form>
+                        <p:panel styleClass="session" header="Iniciar">
+                            <h:panelGrid columns="3">
+                                <p:outputLabel value="Usuario" />
+                                <p:inputText id="user" required="true" requiredMessage="Campo Obligatorio">
+                                </p:inputText>
+                                <p:message for="user" />
+                                <p:outputLabel for="country" value="Tipo Usuario " />
+
+                                <p:selectOneMenu id="country" style="width:195px">
+                        <!-- <p:ajax listener="#{dropdownView.onCountryChange}" update="city" /> -->
+                                    <f:selectItem itemLabel="Administrador" itemValue="" noSelectionOption="true" />
+                                    <!-- <f:selectItems value="#{dropdownView.cities}" /> -->
+                                </p:selectOneMenu>
+                                <br /><!-- Salto de columna -->							
+                                <p:outputLabel value="Password" />
+                                <p:inputText id="password" required="true" type="password" requiredMessage="Campo Obligatorio" >
+                                </p:inputText>
+                                <p:message for="password" />
+
+                            </h:panelGrid>	
+                            <p:commandButton value="Enviar" actionListener="#{redireccion.modulos()}" />					
+                        </p:panel>			
+                    </h:form>
+
+
+
+
+
+
+
+
+                </div>
+                <div class="loginDerecha">
+
+
+                    <p:panel header="Información">
+                        <h:panelGrid columns="1">
+                            <h2><b>Usuario</b></h2>
+                            <ul>
+                                <li>Si el la primera ves que ingresa, usted debe cambiar su contraseña de defecto por la suya propia.</li>
+                                <li>El ingreso incorrecto de su cédula o contraseña repetitivamente provocará que el sistema lo bloqueé por su seguridad, en este caso usted deberá acercarse a la ADEPON, para solicitar que activen nuevamente su cuenta.</li>
+                                <li>Recuerde que su contraseña es intransferible. Por lo tanto, no proporcione su contraseña a otras personas.</li>
+                            </ul>						
+                        </h:panelGrid>					
+                    </p:panel>
+
+
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

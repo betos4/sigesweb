@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+
+    </h:head>
+
+    <ui:composition template="/plantillas/plantilla.xhtml">
+        <ui:define name="content">
+            <div id="subContent1">
+                <h:form>
+                    <p:panel header="Módulos" style="margin-top:15px;">
+                        <h:panelGrid columns="3">
+                            <p:toolbar style="background: white;">
+                                <p:toolbarGroup style="margin:15px;">
+                                    <a title="Administrar" href="/ProjectSiges/pages/gestionAdministracion/modulosAdministracion.xhtml"><img class="efecto" src="resources/images/administrar.png"></img></a>
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                            <p:toolbar style="background: white;">
+                                <p:toolbarGroup style="margin:15px;">
+                                    <a title="Reportes" href="#"><img class="efecto" src="resources/images/reportes.png"></img></a>
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                            <p:toolbar style="background: white;">
+                                <p:toolbarGroup style="margin:15px;">
+                                    <a title="Estadísticas" href="#"><img class="efecto" src="resources/images/estadisticas.png"></img></a>
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

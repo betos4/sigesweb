@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div id="menu">
+        <h:form>
+
+            <p:megaMenu>
+                <p:submenu label="Profesor" icon="ui-icon ui-icon-home">
+                    <p:column>
+                        <p:submenu label="Profesor">
+                            <p:menuitem value="Ingresar" style="text-align:left"
+                                        action="#{redireccion.ingresarProfesor()}" />
+                            <p:menuitem value="Buscar"
+                                        style="text-align:left" action="#{redireccion.buscarProfesor()}" />
+                            <p:menuitem value="Eliminar" style="text-align:left"
+                                        action="#{redireccion.eliminarProfesor()}" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Facultad"
+                           icon="ui-icon ui-icon-clipboard">
+                    <p:column>
+                        <p:submenu label="Facultad">
+                            <p:menuitem value="Ingresar" style="text-align:left"
+                                        action="#{redireccion.ingresarFacultad()}" />
+                            <p:menuitem value="Buscar"
+                                        style="text-align:left" action="#" />
+                            <p:menuitem value="Eliminar" style="text-align:left"
+                                        action="#{redireccion.eliminarFacultad()}" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+            </p:megaMenu>
+        </h:form>
+    </div>
+</ui:composition>

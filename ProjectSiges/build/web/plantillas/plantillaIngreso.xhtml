@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+        <title><ui:insert name="title">Default title</ui:insert></title>
+        <!-- Codigo para mendaje de eliminar-->
+        <script language="javascript" >
+            function borrarValidar() {
+                return (confirm("\u00BF Desea borrar el registro \u003F"));
+            }
+        </script>
+    </h:head>
+
+    <h:body>
+        <div id="all">
+            <div id="header">
+                <ui:insert name="header">
+                    <ui:include src="header.xhtml"/>
+                </ui:insert>
+            </div>
+
+
+            <div id="wrapper">
+                <ui:insert name="menu">
+                    <ui:include src="menuIngreso.xhtml" />
+                </ui:insert>
+
+                <div id="content">
+                    <ui:insert name="content">
+                        Content area.  See comments below this line in the source.
+                        <!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+                        <!-- <div> -->
+                        <!-- <ui:include src="content.xhtml"/> -->
+                        <!-- </div> -->
+                    </ui:insert>
+                </div>
+            </div>
+
+            <div id="footer">
+                <ui:insert name="footer">
+                    <ui:include src="footer.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

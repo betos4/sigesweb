@@ -1,0 +1,178 @@
+@CHARSET "UTF-8";
+
+
+/**************************Estilo para el Header**********************************/
+#header{
+    background:url(../resources/images/fondoHeader.png) top center repeat-x; 
+    width:100%; 
+    min-width:1024px; /*Ancho minimo que puede estar la imagen*/
+    height:200px;
+    border-bottom:5px solid #A60000; /*Linea del borde del header*/
+    overflow:hidden; /*Se encuadra o ajusta la imagen*/
+    position:relative; 
+    z-index:1; /*Traer la imagen al frente (1), o para mandar atras del texto (-1)*/
+}
+
+.contenido{
+    width:1024px; 
+    margin:0 auto; 
+    position:relative; 
+    z-index:1; 
+    min-height:200px;  
+}	
+
+.logoEpn{
+    width:85px; 
+    height:160px; 
+    float:left; 
+    margin:40px 0 0 0; 
+    padding:0; 
+    background:url(../resources/images/epnLogo.png) top left no-repeat; 
+
+}
+
+.logoAdepon{
+    width:250px; 
+    height:160px; 
+    float:left; 
+    margin:40px 0 0 0; 
+    padding:0; 
+    background:url(../resources/images/adeponLogo.png) top left no-repeat; 
+}
+
+.titulo {
+    width: 689px;
+    height: 160px;
+    float:right;
+    text-align: center;
+    margin: 45px 0 0 0;
+}
+
+.encabezado
+{
+    width: 500px;
+    letter-spacing: 15px;
+    font-size: xx-large;
+    color: slategray;
+}
+
+.subEncabezado
+{
+    width: 500px;
+    font-size: 8pt;
+    color: black;
+    font-family: Verdana;
+    font-style: normal;
+}
+
+
+
+/********************************Estilo para el Content*************************************/
+#wrapper {
+    min-height: 500px;
+    width: 1024px;
+    margin:0 auto; 
+}
+
+#menu {
+    margin-top: 5px;
+    text-align: center;
+}
+
+#content
+{
+    height: auto;
+}
+
+#subContent1
+{
+    width: 1024px;
+    margin:0 auto;
+    height: 500px;
+}
+
+#subContent
+{
+    width: 1024px;
+    margin-bottom: 15px;
+    height: auto;
+    text-align: center;
+}
+
+.estiloContenido
+{
+    width: 1024px;
+    height: auto;
+    text-align: center;
+    padding: 8px;
+}
+
+/********************************Estilo para el Footer****************************************/
+#footer
+{
+    /*background: #0d284d;*/
+    background: linear-gradient(to right, #296ad4 0%,#3fb9e2 100%);
+    width: 100%;
+    min-width: 1024px;
+    height: 60px;
+    text-align: center;
+    border-top: 5px solid #A60000;
+    padding: 20px 0 0;
+}
+
+.footerContetn {
+    display: inline-block;
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+    width: 672px;
+}
+
+
+
+/***************************Estilo Login*********************************************/
+.loginIzquierda
+{
+    width: 500px;
+    float: left;
+    margin-top: 100px;
+    padding-right: 12px;
+}
+
+/*text-align: center;*/
+/*margin: 0 auto;*/
+/**vertical-align: middle;*/
+/*padding: 100px 25px 0 25px;*/
+
+.loginDerecha
+{
+    width: 500px;
+    float: right;
+    margin-top: 50px;
+    padding-left: 12px;
+    /*padding: 100px 25px 0 25px;*/
+}
+
+
+
+/*Para cambiar la imagen del boton en primefaces
+.dolar-icon {
+    background-image: url('../resources/images/epnLogo.png') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}*/
+
+
+/******************************************Para la pagina de modulos*************************************/
+.efecto {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    width: 115px;
+    height: 145px;
+}
+
+.efecto:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
