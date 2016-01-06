@@ -7,6 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
+    
 
 
     <ui:composition template="/plantillas/plantillaIngreso.xhtml">
@@ -21,24 +22,126 @@
 
                 <h:form>
 
-                    <div align="center" >
-                        <h:outputText  value="Ingreso de Datos del Profesor"/><br/>
-                        <h:outputText value="ADEPO-SIGES"/><br/>
+                    <div align="left" >
+
+
+                        <div align="center">
+                            <p:fieldset legend="Ingreso de Datos del Profesor">
+
+                                <h:outputText value="ADEPO-SIGES"/><br/>
+
+                            </p:fieldset>
+                        </div>
+
+
+                        <p:growl id="mensaje" autoUpdate="false" severity="info,fatal" showSummary="true" showDetail="true"/>
+                        <p:fieldset legend="Datos Personales">
+                            <h:panelGrid columns="3" id="pgDatos">
+
+
+                                <p:outputLabel for="txtNombres" value="Nombres"/>
+                                <p:inputText id="txtNombres" value="#{usuarioController.profesor.nombres}" required="true"/>
+                                <p:message for="txtNombres"/>
+
+                                <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno"/>
+                                <p:inputText id="txtApellidoPaterno" value="#{usuarioController.profesor.apellidoPaterno}" required="true"/>
+                                <p:message for="txtApellidoPaterno"/>
+                                
+                                <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno"/>
+                                <p:inputText id="txtApellidoMaterno" value="#{usuarioController.profesor.apellidoMaterno}" required="true"/>
+                                <p:message for="txtApellidoMaterno"/>
+                                
+                                                                
+                                <p:outputLabel for="txtCedula" value="Cedula"/>
+                                <p:inputText id="txtCedula" value="#{usuarioController.profesor.cedula}" required="true"/>
+                                <p:message for="txtCedula"/>
+                                
+                                <p:outputLabel for="txtDireccion" value="Dirección"/>
+                                <p:inputText id="txtDireccion" value="#{usuarioController.profesor.direccion}" required="true"/>
+                                <p:message for="txtDireccion"/>
+                                
+                                <p:outputLabel for="txtCorreo" value="Correo"/>
+                                <p:inputText id="txtCorreo" value="#{usuarioController.profesor.correo}" required="true"/>
+                                <p:message for="txtCorreo"/>
+
+                                <p:outputLabel for="rdbSexo" value="Sexo"/>
+                                <p:selectOneRadio id="rdbSexo" value="#{usuarioController.profesor.sexo}" required="true" >
+                                    <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
+                                    <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
+
+                                </p:selectOneRadio>
+                                <p:message for="rdbSexo"/>
+                                
+                                <p:outputLabel for="cbpFacultad" value="Facultad"/>
+                                <p:selectOneMenu id="cbpFacultad" value="#{usuarioController.facultad.tipoFacultad}" required="true">
+                                    <f:selectItem itemValue="C" itemLabel="Ciencias"/>
+                                    <f:selectItem itemValue="CA" itemLabel="Ciencias Administrativas"/>
+                                    <f:selectItem itemValue="IC" itemLabel="Ingeniería Civil"/>
+                                    <f:selectItem itemValue="IA" itemLabel="Ingeniería Ambiental"/>
+                                    <f:selectItem itemValue="IE" itemLabel="Ingeniería Eléctrica"/>
+                                    <f:selectItem itemValue="IECA" itemLabel="Ingeniería Electrónica"/>
+                                    <f:selectItem itemValue="G" itemLabel="Geología"/>
+                                    <f:selectItem itemValue="P" itemLabel="Petróleos"/>
+                                    <f:selectItem itemValue="IM" itemLabel="Ingeniería Mecánica"/>
+                                    <f:selectItem itemValue="IQ" itemLabel="Ingeniería Química y Agroindustria"/>
+                                    <f:selectItem itemValue="IA" itemLabel="Ingeniería Agroindustrial"/>
+                                    <f:selectItem itemValue="IS" itemLabel="Ingeniería Sistemas"/>
+                                    <f:selectItem itemValue="T" itemLabel=" Escuela de formación de Tecnólogos"/>
+                                    <f:selectItem itemValue="ICB" itemLabel="Formación Básica"/>
+                                    
+                                </p:selectOneMenu>
+                                <p:message for="cbpFacultad"/>
+
+                                <p:outputLabel for="txtFecha" value="Fecha Nacimiento"/>
+                                <p:calendar id="txtFecha" value="#{usuarioController.profesor.fechaNacimiento}" locale="es" required="true"></p:calendar>
+                                <p:message for="txtFecha"/>
+                                
+                                            
+                                
+                                
+
+
+
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="Datos de la Cuenta">
+                            <h:panelGrid columns="3" id="pgCuenta">
+
+                                <p:outputLabel for="cbpTipo" value="Tipo de cuenta"/>
+                                <p:selectOneMenu id="cbpTipo" value="#{usuarioController.usuario.tipo}" required="true">
+                                    <f:selectItem itemValue="A" itemLabel="Administrador"/>
+                                    <f:selectItem itemValue="O" itemLabel="Operario"/>
+                                    <f:selectItem itemValue="P" itemLabel="Profesor"/>
+                                </p:selectOneMenu>
+                                <p:message for="cbpTipo"/>
+
+                                <p:outputLabel for="txtUsuario" value="Usuario"/>
+                                <p:inputText id="txtUsuario" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="txtUsuario"/>
+
+
+                                <p:outputLabel for="clave1" value="Clave"/>
+                                <p:password id ="clave1" value="#{usuarioController.usuario.clave}" 
+                                            validatorMessage="Las Claves No Coinciden" weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno"
+                                            match="clave2" feedback="true" promptLabel="Ingrese Una Clave" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="clave1"/>
+
+                                <p:outputLabel for="clave2" value="Repetir Clave"/>
+                                <p:password id="clave2" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="clave2"/>
+                            </h:panelGrid>
+                            <p:commandButton icon="ui-icon-check" value="Registrar" update="pgDatos, pgCuenta,mensaje" actionListener="#{usuarioController.registar()}" />
+                        </p:fieldset>
+
+
+
 
                         
-
-                        <!--Ingresando codigo para listar facultades-->
-                        <h:outputText value="Nombre Facultad" />
-                        <h:selectOneMenu value="#{profesorBean.profesor.idFacultad}">
-                            <f:selectItems value="#{facultadBean.facultades}" var="facu"
-                                           itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >
-                            </f:selectItems>
-                        </h:selectOneMenu>
-
-                        <h:commandButton  value="GUARDAR" action="#{profesorBean.guardarDatos()}" /><br />
                     </div>
 
                 </h:form>
+
 
             </div>
         </ui:define>

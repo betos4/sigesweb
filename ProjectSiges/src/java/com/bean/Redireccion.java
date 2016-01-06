@@ -47,6 +47,20 @@ public class Redireccion {
             // TODO: handle exception
         }
     }
+    
+    public void crearProfesor() {
+        try {
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/crearProfesor.xhtml");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    
+    
+    
 
     public void eliminarProfesor() {
         try {

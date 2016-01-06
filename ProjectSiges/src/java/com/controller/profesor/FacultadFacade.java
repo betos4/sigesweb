@@ -4,7 +4,7 @@
  */
 package com.controller.profesor;
 
-import com.entity.Profesor;
+import com.entity.Facultad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author DARIO
  */
 @Stateless
-public class ProfesorFacade extends AbstractFacade<Profesor> implements ProfesorFacadeLocal {
+public class FacultadFacade extends AbstractFacade<Facultad> implements FacultadFacadeLocal {
     @PersistenceContext(unitName = "ProjectSigesPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class ProfesorFacade extends AbstractFacade<Profesor> implements Profesor
         return em;
     }
 
-    public ProfesorFacade() {
-        super(Profesor.class);
+    public FacultadFacade() {
+        super(Facultad.class);
     }
     
 }

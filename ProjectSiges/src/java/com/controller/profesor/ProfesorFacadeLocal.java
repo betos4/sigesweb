@@ -10,16 +10,16 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Roberto
+ * @author DARIO
  */
 @Local
 public interface ProfesorFacadeLocal {
 
     void create(Profesor profesor);
 
-    void remove(Profesor profesor);
-
     void edit(Profesor profesor);
+
+    void remove(Profesor profesor);
 
     Profesor find(Object id);
 
@@ -28,4 +28,5 @@ public interface ProfesorFacadeLocal {
     List<Profesor> findRange(int[] range);
 
     int count();
+    
 }
