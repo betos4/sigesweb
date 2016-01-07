@@ -37,5 +37,9 @@
             <to-view-id>/pages/gestionAdministracion/facultad/crearFacultad.xhtml</to-view-id>
         </navigation-case>    
     </navigation-rule>
-
+    <managed-bean>
+        <managed-bean-name>listarFacultadIngresoController</managed-bean-name>
+        <managed-bean-class>controller.listarFacultadIngresoController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

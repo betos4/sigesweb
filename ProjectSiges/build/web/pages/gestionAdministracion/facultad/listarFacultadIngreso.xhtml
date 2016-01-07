@@ -22,31 +22,31 @@
                 <h:form prependId="false">
                     <p:panel header="Lista de Facultades" style="margin-top:15px;">
                         <p:panelGrid columns="1">
-                            <p:dataTable  value="#{facultadBean.facultades}" var="item" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+                            <p:dataTable value="#{listarFacultadIngresoController.findall2()}"  var="item" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
                                           paginator="true" rows="4" style="margin-bottom:20px"
                                           rowsPerPageTemplate="4,8,12">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Id"/>
+                                        <h:outputText value="ID"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idFacultad}"/>
+                                    <h:outputText value="#{item.codigoProfesor}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Nombre Facultad"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.nombreFacultad}"/>
+                                    <h:outputText value="#{item.tipoFacultad}"/>
                                 </p:column> 
                                 <p:column style="text-align: center;">
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
                                     <p:commandButton value="Modificar" action="#" />
-                                    <p:commandButton value="Eliminar" onclick="return borrarValidar();" action="#{facultadBean.botonEliminar(item)}" />
+                                    <p:commandButton value="Eliminar" onclick="return borrarValidar();" action="#" />
                                 </p:column>
                             </p:dataTable>
 
-                            <p:commandButton value="Ingresar" action="#{facultadBean.botonInsertar(item)}" />
+                            <p:commandButton value="Ingresar" action="#" />
                         </p:panelGrid>
                     </p:panel>
                 </h:form>
