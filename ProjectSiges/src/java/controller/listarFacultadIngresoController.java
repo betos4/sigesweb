@@ -1,8 +1,8 @@
 package controller;
 
-import com.controller.profesor.FacultadFacadeLocal;
-import com.controller.profesor.ProfesorFacadeLocal;
-import com.entity.Facultad;
+import model.FacultadFacadeLocal;
+import model.ProfesorFacadeLocal;
+import entity.Facultad;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;

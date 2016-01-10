@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controller.profesor;
+package model;
 
-import com.entity.Facultad;
+import entity.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author DARIO
  */
 @Stateless
-public class FacultadFacade extends AbstractFacade<Facultad> implements FacultadFacadeLocal {
+public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
     @PersistenceContext(unitName = "ProjectSigesPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class FacultadFacade extends AbstractFacade<Facultad> implements Facultad
         return em;
     }
 
-    public FacultadFacade() {
-        super(Facultad.class);
+    public UsuarioFacade() {
+        super(Usuario.class);
     }
     
 }

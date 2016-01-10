@@ -1,7 +1,7 @@
 package controller;
 
-import com.controller.profesor.ProfesorFacadeLocal;
-import com.entity.Profesor;
+import model.ProfesorFacadeLocal;
+import entity.Profesor;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;

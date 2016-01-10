@@ -1,10 +1,10 @@
 package controller;
 
-import com.controller.profesor.FacultadFacadeLocal;
-import com.controller.profesor.UsuarioFacadeLocal;
-import com.entity.Facultad;
-import com.entity.Profesor;
-import com.entity.Usuario;
+import model.FacultadFacadeLocal;
+import model.UsuarioFacadeLocal;
+import entity.Facultad;
+import entity.Profesor;
+import entity.Usuario;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
