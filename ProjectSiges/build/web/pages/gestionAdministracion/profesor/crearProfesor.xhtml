@@ -7,6 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
+    
 
 
     <ui:composition template="/plantillas/plantillaIngreso.xhtml">
@@ -23,58 +24,125 @@
 
                     <div align="left" >
 
+
                         <div align="center">
                             <p:fieldset legend="Ingreso de Datos del Profesor">
+
                                 <h:outputText value="ADEPO-SIGES"/><br/>
+
                             </p:fieldset>
                         </div>
+
 
                         <p:growl id="mensaje" autoUpdate="false" severity="info,fatal" showSummary="true" showDetail="true"/>
                         <p:fieldset legend="Datos Personales">
                             <h:panelGrid columns="3" id="pgDatos">
 
 
-                                <p:outputLabel for="txtCedula" value="CEDULA"/>
-                                <p:inputText id="txtCedula" value="#{profesorBean.profesor.cedulaProfesor}" required="true"/>
+                                <p:outputLabel for="txtNombres" value="Nombres"/>
+                                <p:inputText id="txtNombres" value="#{usuarioController.profesor.nombres}" required="true"/>
+                                <p:message for="txtNombres"/>
+
+                                <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno"/>
+                                <p:inputText id="txtApellidoPaterno" value="#{usuarioController.profesor.apellidoPaterno}" required="true"/>
+                                <p:message for="txtApellidoPaterno"/>
+                                
+                                <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno"/>
+                                <p:inputText id="txtApellidoMaterno" value="#{usuarioController.profesor.apellidoMaterno}" required="true"/>
+                                <p:message for="txtApellidoMaterno"/>
+                                
+                                                                
+                                <p:outputLabel for="txtCedula" value="Cedula"/>
+                                <p:inputText id="txtCedula" value="#{usuarioController.profesor.cedula}" required="true"/>
                                 <p:message for="txtCedula"/>
-
-                                <p:outputLabel for="txtNombre" value="NOMBRE"/>
-                                <p:inputText id="txtNombre" value="#{profesorBean.profesor.nombreProfesor}" required="true"/>
-                                <p:message for="txtNombre"/>
-
-                                <p:outputLabel for="txtApellido" value="APELLIDO"/>
-                                <p:inputText id="txtApellido" value="#{profesorBean.profesor.apellidoProfesor}" required="true"/>
-                                <p:message for="txtApellido"/>
-
-                                <p:outputLabel for="txtCelular" value="CELULAR"/>
-                                <p:inputText id="txtCelular" value="#{profesorBean.profesor.celularProfesor}" required="true"/>
-                                <p:message for="txtCelular"/>
-
-                                <p:outputLabel for="txtTelefono" value="TELEFONO"/>
-                                <p:inputText id="txtTelefono" value="#{profesorBean.profesor.telefonoProfesor}" required="true"/>
-                                <p:message for="txtTelefono"/>
-
-                                <p:outputLabel for="txtCorreo" value="CORREO"/>
-                                <p:inputText id="txtCorreo" value="#{profesorBean.profesor.correoProfesor}" required="true" />
+                                
+                                <p:outputLabel for="txtDireccion" value="Dirección"/>
+                                <p:inputText id="txtDireccion" value="#{usuarioController.profesor.direccion}" required="true"/>
+                                <p:message for="txtDireccion"/>
+                                
+                                <p:outputLabel for="txtCorreo" value="Correo"/>
+                                <p:inputText id="txtCorreo" value="#{usuarioController.profesor.correo}" required="true"/>
                                 <p:message for="txtCorreo"/>
 
-                                <!--Ingresando codigo para listar facultades-->
-                                <!--<p:outputLabel for="cbpFacultad" value="FACULTAD"/> 
-                                <p:selectOneMenu id="cbpFacultad" value="#{profesorBean.profesor.idFacultad}" required="true">
-                                    <f:selectItems value="#{facultadBean.listaFacultades}" var="facu"
-                                                   itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >
-                                    </f:selectItems>
+                                <p:outputLabel for="rdbSexo" value="Sexo"/>
+                                <p:selectOneRadio id="rdbSexo" value="#{usuarioController.profesor.sexo}" required="true" >
+                                    <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
+                                    <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
+
+                                </p:selectOneRadio>
+                                <p:message for="rdbSexo"/>
+                                
+                                <p:outputLabel for="cbpFacultad" value="Facultad"/>
+                                <p:selectOneMenu id="cbpFacultad" value="#{usuarioController.facultad.tipoFacultad}" required="true">
+                                    <f:selectItem itemValue="FC" itemLabel="Ciencias"/>
+                                    <f:selectItem itemValue="FCA" itemLabel="Ciencias Administrativas"/>
+                                    <f:selectItem itemValue="FIC" itemLabel="Ingeniería Civil"/>
+                                    <f:selectItem itemValue="FIA" itemLabel="Ingeniería Ambiental"/>
+                                    <f:selectItem itemValue="IE" itemLabel="Ingeniería Eléctrica"/>
+                                    <f:selectItem itemValue="IECA" itemLabel="Ingeniería Electrónica"/>
+                                    <f:selectItem itemValue="FG" itemLabel="Geología"/>
+                                    <f:selectItem itemValue="FP" itemLabel="Petróleos"/>
+                                    <f:selectItem itemValue="FIM" itemLabel="Ingeniería Mecánica"/>
+                                    <f:selectItem itemValue="FIQ" itemLabel="Ingeniería Química y Agroindustria"/>
+                                    <f:selectItem itemValue="FIA" itemLabel="Ingeniería Agroindustrial"/>
+                                    <f:selectItem itemValue="FIS" itemLabel="Ingeniería Sistemas"/>
+                                    <f:selectItem itemValue="ESFOT" itemLabel=" Escuela de formación de Tecnólogos"/>
+                                    <f:selectItem itemValue="ICB" itemLabel="Formación Básica"/>
+                                    
                                 </p:selectOneMenu>
-                                <p:message for="cbpFacultad"/>-->
+                                <p:message for="cbpFacultad"/>
+
+                                <p:outputLabel for="txtFecha" value="Fecha Nacimiento"/>
+                                <p:calendar id="txtFecha" value="#{usuarioController.profesor.fechaNacimiento}" locale="es" required="true"></p:calendar>
+                                <p:message for="txtFecha"/>
+                                
+                                            
+                                
+                                
+
+
 
                             </h:panelGrid>
                         </p:fieldset>
 
-                        <p:commandButton  value="GUARDAR" action="#{profesorBean.guardarDatos()}" />
-                        <p:commandButton  icon="ui-icon-disk" value="ATRAS" action="#{redireccion.atrasProfesor()}" />
+                        <p:fieldset legend="Datos de la Cuenta">
+                            <h:panelGrid columns="3" id="pgCuenta">
+
+                                <p:outputLabel for="cbpTipo" value="Tipo de cuenta"/>
+                                <p:selectOneMenu id="cbpTipo" value="#{usuarioController.usuario.tipo}" required="true">
+                                    <f:selectItem itemValue="A" itemLabel="Administrador"/>
+                                    <f:selectItem itemValue="O" itemLabel="Operario"/>
+                                    <f:selectItem itemValue="P" itemLabel="Profesor"/>
+                                </p:selectOneMenu>
+                                <p:message for="cbpTipo"/>
+
+                                <p:outputLabel for="txtUsuario" value="Usuario"/>
+                                <p:inputText id="txtUsuario" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="txtUsuario"/>
+
+
+                                <p:outputLabel for="clave1" value="Clave"/>
+                                <p:password id ="clave1" value="#{usuarioController.usuario.clave}" 
+                                            validatorMessage="Las Claves No Coinciden" weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno"
+                                            match="clave2" feedback="true" promptLabel="Ingrese Una Clave" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="clave1"/>
+
+                                <p:outputLabel for="clave2" value="Repetir Clave"/>
+                                <p:password id="clave2" required="true" requiredMessage="Campo Requerido"/>
+                                <p:message for="clave2"/>
+                            </h:panelGrid>
+                            <p:commandButton icon="ui-icon-check" value="Registrar" update="pgDatos, pgCuenta,mensaje" actionListener="#{usuarioController.registar()}" />
+                        </p:fieldset>
+
+
+
+
+                        
                     </div>
 
                 </h:form>
+
+
             </div>
         </ui:define>
     </ui:composition>
