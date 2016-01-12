@@ -47,20 +47,6 @@ public class Redireccion {
             // TODO: handle exception
         }
     }
-    
-    public void crearProfesor() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/crearProfesor.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-    
-    
-    
 
     public void eliminarProfesor() {
         try {
@@ -125,6 +111,17 @@ public class Redireccion {
                     .getCurrentInstance()
                     .getExternalContext()
                     .redirect("/ProjectSiges/pages/gestionAdministracion/facultad/listarFacultadIngreso.xhtml");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    
+    public void atrasProfesor() {
+        try {
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/listarProfesorIngreso.xhtml");
         } catch (Exception e) {
             // TODO: handle exception
         }
