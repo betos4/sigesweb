@@ -27,4 +27,11 @@ public class ServicioProfesor extends ServicioGenerico<Profesor> {
                 .createQuery("SELECT p FROM Profesor p Order by p.nombreProfesor asc");
         return q.getResultList();
     }
+    
+    public List<Profesor> buscarProfesor(int cedula) {
+        Query q = em
+                .createNamedQuery("Profesor.findByCedulaProfesor");
+        q.setParameter("cedulaProfesor", cedula);
+        return q.getResultList();
+    }
 }

@@ -6,6 +6,7 @@ package com.bean;
 
 import com.entity.Facultad;
 import com.entity.Profesor;
+import com.manager.ServicioFacultad;
 import com.manager.ServicioProfesor;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +24,23 @@ import javax.faces.bean.SessionScoped;
 public class ProfesorBean {
 
     private List<Profesor> listaProfesores;
-    private Profesor profesor;
-    //Clave foranea para llenar el comboBox
+    public Profesor profesor;
     private Facultad facultad;
     @EJB
     ServicioProfesor servicioProfesor;
+    @EJB
+    ServicioFacultad servicioFacutlad;
+    
+    /*PAra realizar la busqueda de un profesor*/
+    private List<Profesor> busquedaProfesor;
+    private int cedula;
 
     /*constructor*/
     public ProfesorBean() {
         facultad = new Facultad();//Es para guardar al crear profesor
+        busquedaProfesor = new ArrayList<Profesor>();
     }
 
-    
     /*Getter and Setters*/
     public List<Profesor> getListaProfesores() {
         listaProfesores = servicioProfesor.buscarTodos();
@@ -52,8 +58,7 @@ public class ProfesorBean {
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
-    
-    
+
     /*Getters and setters de facultad*/
     public Facultad getFacultad() {
         return facultad;
@@ -62,15 +67,33 @@ public class ProfesorBean {
     public void setFacultad(Facultad facultad) {
         this.facultad = facultad;
     }
+    
+    
+    /*Getters and Setters para lo de la busqueda*/
+    public List<Profesor> getBusquedaProfesor() {
+        return busquedaProfesor;
+    }
+
+    public void setBusquedaProfesor(List<Profesor> busquedaProfesor) {
+        this.busquedaProfesor = busquedaProfesor;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
 
     /*Metodos para realizar el CRUD*/
     public String guardarDatos() {
         if (profesor.getCedulaProfesor() != null) {
+            profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
             servicioProfesor.actualizar(profesor);
             System.out.println("Entro a editar profesor");
-            System.out.println(profesor.getApellidoProfesor());
-            //System.out.println(profesor.getIdFacultad());
         } else {
+            //profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
             servicioProfesor.insertar(profesor);
             System.out.println("Entro a crear profesor");
         }
@@ -87,13 +110,23 @@ public class ProfesorBean {
         servicioProfesor.eliminar(profesor);
         return null;
     }
-    
+
     public String botonModificar(Profesor profesor) {
         this.profesor = profesor;//va el this para modificar el campo elegido
         return "regreso";
     }
-    /*public String botonBuscar() {
-     profesores = profesorControlador.findRange(cedula);
-     return null;
+    
+    public String botonModificar2(Profesor profesor) {
+        this.profesor = profesor;//va el this para modificar el campo elegido
+        return "buscar";
+    }
+
+    public List<Profesor> botonBuscar() {
+        busquedaProfesor = servicioProfesor.buscarProfesor(cedula);
+        return busquedaProfesor;
+    }
+    /*public int getIdFacultad(String nombre) {
+     int aux = servicioFacutlad.buscarFacutadId(nombre);
+     return aux;
      }*/
 }

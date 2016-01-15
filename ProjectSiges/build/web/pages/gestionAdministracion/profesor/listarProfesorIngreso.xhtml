@@ -62,25 +62,25 @@
                                     <h:outputText value="#{item.correoProfesor}"/>
                                 </p:column>
 
-                                <!--<p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Facultad"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idFacultad.nombreFacultad}"/>
-                                </p:column> -->
+                                </p:column>
 
                                 <p:column style="text-align: center;">
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
-                                    <p:commandButton value="Modificar" action="#{profesorBean.botonModificar(item)}" />
-                                    <p:commandButton value="Eliminar" onclick="return borrarValidar();" action="#{profesorBean.botonEliminar(item)}" />
+                                    <p:commandButton icon="ui-icon-pencil" action="#{profesorBean.botonModificar(item)}" />
+                                    <p:commandButton icon="ui-icon-trash" onclick="return borrarValidar();" action="#{profesorBean.botonEliminar(item)}" />
                                 </p:column>
 
                             </p:dataTable>
-
-                            <p:commandButton value="Ingresar" action="#{profesorBean.botonInsertar(item)}" />
                         </p:panelGrid>
+                        <p:commandButton icon="ui-icon-document" value="INGRESAR" action="#{profesorBean.botonInsertar(item)}" />
+                        <p:commandButton icon="ui-icon-search" value="BUSCAR" action="#{redireccion.buscarProfesor()}" />
                     </p:panel>
                 </h:form>
 

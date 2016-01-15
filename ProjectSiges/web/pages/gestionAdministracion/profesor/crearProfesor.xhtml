@@ -21,58 +21,55 @@
 
                 <h:form>
 
-                    <div align="left" >
 
-                        <div align="center">
-                            <p:fieldset legend="Ingreso de Datos del Profesor">
-                                <h:outputText value="ADEPO-SIGES"/><br/>
-                            </p:fieldset>
-                        </div>
-
-                        <p:growl id="mensaje" autoUpdate="false" severity="info,fatal" showSummary="true" showDetail="true"/>
-                        <p:fieldset legend="Datos Personales">
-                            <h:panelGrid columns="3" id="pgDatos">
-
-
-                                <p:outputLabel for="txtCedula" value="CEDULA"/>
-                                <p:inputText id="txtCedula" value="#{profesorBean.profesor.cedulaProfesor}" required="true"/>
-                                <p:message for="txtCedula"/>
-
-                                <p:outputLabel for="txtNombre" value="NOMBRE"/>
-                                <p:inputText id="txtNombre" value="#{profesorBean.profesor.nombreProfesor}" required="true"/>
-                                <p:message for="txtNombre"/>
-
-                                <p:outputLabel for="txtApellido" value="APELLIDO"/>
-                                <p:inputText id="txtApellido" value="#{profesorBean.profesor.apellidoProfesor}" required="true"/>
-                                <p:message for="txtApellido"/>
-
-                                <p:outputLabel for="txtCelular" value="CELULAR"/>
-                                <p:inputText id="txtCelular" value="#{profesorBean.profesor.celularProfesor}" required="true"/>
-                                <p:message for="txtCelular"/>
-
-                                <p:outputLabel for="txtTelefono" value="TELEFONO"/>
-                                <p:inputText id="txtTelefono" value="#{profesorBean.profesor.telefonoProfesor}" required="true"/>
-                                <p:message for="txtTelefono"/>
-
-                                <p:outputLabel for="txtCorreo" value="CORREO"/>
-                                <p:inputText id="txtCorreo" value="#{profesorBean.profesor.correoProfesor}" required="true" />
-                                <p:message for="txtCorreo"/>
-
-                                <!--Ingresando codigo para listar facultades-->
-                                <!--<p:outputLabel for="cbpFacultad" value="FACULTAD"/> 
-                                <p:selectOneMenu id="cbpFacultad" value="#{profesorBean.profesor.idFacultad}" required="true">
-                                    <f:selectItems value="#{facultadBean.listaFacultades}" var="facu"
-                                                   itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >
-                                    </f:selectItems>
-                                </p:selectOneMenu>
-                                <p:message for="cbpFacultad"/>-->
-
-                            </h:panelGrid>
+                    <div align="center">
+                        <p:fieldset legend="Ingreso de Datos del Profesor">
+                            <h:outputText value="ADEPO-SIGES"/><br/>
                         </p:fieldset>
-
-                        <p:commandButton  value="GUARDAR" action="#{profesorBean.guardarDatos()}" />
-                        <p:commandButton  icon="ui-icon-disk" value="ATRAS" action="#{redireccion.atrasProfesor()}" />
                     </div>
+
+                    <p:growl id="mensaje" autoUpdate="false" severity="info,fatal" showSummary="true" showDetail="true"/>
+                    <p:fieldset legend="Datos Personales" style="margin-bottom: 15px;">
+                        <h:panelGrid columns="3" id="pgDatos">
+
+
+                            <p:outputLabel for="txtCedula" value="CEDULA"/>
+                            <p:inputText id="txtCedula" value="#{profesorBean.profesor.cedulaProfesor}" required="true"/>
+                            <p:message for="txtCedula"/>
+
+                            <p:outputLabel for="txtNombre" value="NOMBRE"/>
+                            <p:inputText id="txtNombre" value="#{profesorBean.profesor.nombreProfesor}" required="true"/>
+                            <p:message for="txtNombre"/>
+
+                            <p:outputLabel for="txtApellido" value="APELLIDO"/>
+                            <p:inputText id="txtApellido" value="#{profesorBean.profesor.apellidoProfesor}" required="true"/>
+                            <p:message for="txtApellido"/>
+
+                            <p:outputLabel for="txtCelular" value="CELULAR"/>
+                            <p:inputText id="txtCelular" value="#{profesorBean.profesor.celularProfesor}" required="true"/>
+                            <p:message for="txtCelular"/>
+
+                            <p:outputLabel for="txtTelefono" value="TELEFONO"/>
+                            <p:inputText id="txtTelefono" value="#{profesorBean.profesor.telefonoProfesor}" required="true"/>
+                            <p:message for="txtTelefono"/>
+
+                            <p:outputLabel for="txtCorreo" value="CORREO"/>
+                            <p:inputText id="txtCorreo" value="#{profesorBean.profesor.correoProfesor}" required="true" />
+                            <p:message for="txtCorreo"/>
+
+                            <p:outputLabel for="cbpFacultad" value="FACULTAD"/> 
+                            <p:selectOneMenu id="cbpFacultad" value="#{profesorBean.facultad.idFacultad}" required="true">
+                                <f:selectItem itemLabel="Selecione la facultad" itemValue="" />
+                                <f:selectItems value="#{facultadBean.listaFacultades}" var="facu"
+                                               itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >  
+                                </f:selectItems>
+                            </p:selectOneMenu>
+                            <p:message for="cbpFacultad"/>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:commandButton  icon="ui-icon-disk" value="GUARDAR" action="#{profesorBean.guardarDatos()}" />
+                    <p:commandButton  icon="ui-icon-close" value="ATRAS" action="#{redireccion.atrasProfesor()}" />
 
                 </h:form>
             </div>

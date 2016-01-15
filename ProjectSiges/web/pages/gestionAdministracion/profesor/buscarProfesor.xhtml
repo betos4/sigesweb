@@ -16,13 +16,22 @@
                 <div class="estiloContenido">
                     <img src="../../../resources/images/logo.png" style="height:60px; width:180px;" />
                     <br />
-                    Asociación de Profesores de la Politécnica Nacional  EPN                  
+                    Asociación de Profesores de la Politécnica Nacional                    
                 </div>
 
-                <h:form>
-                    <p:panel header="Lista de Profesores" style="margin-top:15px;">
+                <h:form id="formBusquedaProfesor">
+                    <p:fieldset legend="Buscar Profesor" style="margin-bottom: 15px;">
+                        <h:panelGrid columns="3">
+                            <p:outputLabel value="Cédula: "/>
+                            <p:inputText value="#{profesorBean.cedula}" />
+                            <p:commandButton  icon="ui-icon-search"  action="#{profesorBean.botonBuscar()}" update="formBusquedaProfesor"/>
+                        </h:panelGrid>
+                    </p:fieldset>    
+
+
+                    <p:panel header="Resultado" style="margin-top:15px;">
                         <p:panelGrid columns="1">
-                            <p:dataTable  value="#{profesorBean.listaProfesores}" var="item" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+                            <p:dataTable  value="#{profesorBean.botonBuscar()}" var="item" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
                                           paginator="true" rows="4" style="margin-bottom:20px"
                                           rowsPerPageTemplate="4,8,12">
                                 <p:column>
@@ -73,17 +82,14 @@
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
-                                    <p:commandButton icon="ui-icon-pencil" action="#{profesorBean.botonModificar(item)}" />
+                                    <p:commandButton icon="ui-icon-pencil" action="#{profesorBean.botonModificar2(item)}" />
                                     <p:commandButton icon="ui-icon-trash" onclick="return borrarValidar();" action="#{profesorBean.botonEliminar(item)}" />
                                 </p:column>
-
                             </p:dataTable>
                         </p:panelGrid>
-                        <p:commandButton icon="ui-icon-document" value="INGRESAR" action="#{profesorBean.botonInsertar(item)}" />
-                        <p:commandButton icon="ui-icon-search" value="BUSCAR" action="#{redireccion.buscarProfesor()}" />
+                        <p:commandButton  icon="ui-icon-close" value="ATRAS" action="#{redireccion.atrasProfesor()}" />
                     </p:panel>
                 </h:form>
-
             </div>
         </ui:define>
     </ui:composition>

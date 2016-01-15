@@ -28,4 +28,11 @@ public class ServicioFacultad extends ServicioGenerico<Facultad> {
                 .createQuery("SELECT f FROM Facultad f Order by f.nombreFacultad asc");
         return q.getResultList();
     }
+    
+    
+    /*public int buscarFacutadId(String nombre) {
+        Query q = em
+                .createQuery("SELECT f.idFacultad FROM Facultad f where f.nombreFacultad="+nombre);
+        return q.getFirstResult();
+    }*/
 }

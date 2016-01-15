@@ -41,13 +41,14 @@
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
-                                    <p:commandButton value="Modificar" action="#{facultadBean.botonModificar(item)}" />
-                                    <p:commandButton value="Eliminar" onclick="return borrarValidar();" action="#{facultadBean.botonEliminar(item)}" />
+                                    <p:commandButton icon="ui-icon-pencil" action="#{facultadBean.botonModificar(item)}" />
+                                    <p:commandButton icon="ui-icon-trash" onclick="return borrarValidar();" action="#{facultadBean.botonEliminar(item)}" />
+                                    <p:commandButton icon="ui-icon-search" action="#" />
                                 </p:column>
                             </p:dataTable>
-
-                            <p:commandButton value="Ingresar" action="#{facultadBean.botonInsertar(item)}" />
                         </p:panelGrid>
+                        <p:commandButton icon="ui-icon-document" value="INGRESAR" action="#{facultadBean.botonInsertar(item)}" />
+                        <p:commandButton icon="ui-icon-search" value="BUSCAR" action="#" />
                     </p:panel>
                 </h:form>
 
