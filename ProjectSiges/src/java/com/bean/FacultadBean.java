@@ -6,12 +6,11 @@ package com.bean;
 
 import com.manager.ServicioFacultad;
 import com.entity.Facultad;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 //import javax.faces.bean.ViewScoped;
 
 /**
@@ -21,16 +20,28 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "facultadBean")
 @SessionScoped
 public class FacultadBean {
+    @EJB
+    private ServicioFacultad EJBservicioFacultad;
 
     private Facultad facultad;
     private List<Facultad> listaFacultades;
-    @EJB
-    ServicioFacultad servicioFacultad;
+    //@EJB
+    //ServicioFacultad EJBservicioFacultad;
+    private int selectedItemIndex;
 
+    
+    
     public FacultadBean() {
         //facultades = new ArrayList<Facultad>();
     }
     
+    public Facultad getSelected() {
+        if (facultad == null) {
+            facultad = new Facultad();
+            selectedItemIndex = -1;
+        }
+        return facultad;
+    }
 
 
     /*Getters and setters*/
@@ -43,7 +54,7 @@ public class FacultadBean {
     }
 
     public List<Facultad> getListaFacultades() {
-        listaFacultades = servicioFacultad.buscarTodos();
+        listaFacultades = EJBservicioFacultad.buscarTodos();
         return listaFacultades;
     }
 
@@ -51,13 +62,21 @@ public class FacultadBean {
         this.listaFacultades = listaFacultades;
     }
 
+    //Metodos Buscar en Combobox
+    public SelectItem[] getFacultadesDisponiblesSelecccionarUno() {
+        return ServicioFacultad.getSeleccionarItems(EJBservicioFacultad.buscarTodos(), true);
+        
+        //return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+    
+    
     /*METODOS PARA EL CRUD DE FACULTAD*/
     public String botonGuardar() {
         if (facultad.getIdFacultad() != null) {
-            servicioFacultad.actualizar(facultad);
+            EJBservicioFacultad.actualizar(facultad);
             System.out.println("Entro a editar facultad");
         } else {
-            servicioFacultad.insertar(facultad);
+            EJBservicioFacultad.insertar(facultad);
             System.out.println("Entro a crear facultad");
         }
         return "indice";
@@ -70,7 +89,7 @@ public class FacultadBean {
     }
 
     public String botonEliminar(Facultad facultad) {
-        servicioFacultad.eliminar(facultad);
+        EJBservicioFacultad.eliminar(facultad);
         return null;
     }
     

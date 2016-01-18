@@ -46,7 +46,7 @@ public class Facultad implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "NOMBRE_FACULTAD")
     private String nombreFacultad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFacultad")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idFacultad")
     private Collection<Profesor> profesorCollection;
 
     public Facultad() {

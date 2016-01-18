@@ -5,6 +5,7 @@
 package com.manager;
 
 import java.util.List;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -55,6 +56,21 @@ public abstract class ServicioGenerico<T> {
     public void flushBase() {
         em.flush();
     }
+    
+     public static SelectItem[] getSeleccionarItems(List<?> entities, boolean selectOne) {
+        int size = selectOne ? entities.size() + 1 : entities.size();
+        SelectItem[] items = new SelectItem[size];
+        int i = 0;
+        if (selectOne) {
+            items[0] = new SelectItem("", "---");
+            i++;
+        }
+        for (Object x : entities) {
+            items[i++] = new SelectItem(x, x.toString());
+        }
+        return items;
+    }
+
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public List<T> buscarTodos() {

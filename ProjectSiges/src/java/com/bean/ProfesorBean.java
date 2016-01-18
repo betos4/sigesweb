@@ -11,8 +11,10 @@ import com.manager.ServicioProfesor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 //import javax.faces.bean.SessionScoped;
 
 /**
@@ -91,11 +93,13 @@ public class ProfesorBean {
         if (profesor.getCedulaProfesor() != null) {
             profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
             servicioProfesor.actualizar(profesor);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"AVISO","Se Registro"));
             System.out.println("Entro a editar profesor");
         } else {
             //profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
             servicioProfesor.insertar(profesor);
             System.out.println("Entro a crear profesor");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"AVISO","ERROR"));
         }
         return "indice";
     }

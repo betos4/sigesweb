@@ -5,15 +5,21 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,7 +42,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Profesor implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "CODIGO_PROFESOR")
+    private Integer codigoProfesor;
+    
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "CEDULA_PROFESOR")
@@ -60,22 +73,63 @@ public class Profesor implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "CORREO_PROFESOR")
     private String correoProfesor;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2)
+    @Column(name = "sexo")
+    private String sexo;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fechaNacimiento")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaNacimiento;
+    
     @JoinColumn(name = "ID_FACULTAD", referencedColumnName = "ID_FACULTAD")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
     private Facultad idFacultad;
 
     public Profesor() {
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    
     public Profesor(Long cedulaProfesor) {
         this.cedulaProfesor = cedulaProfesor;
     }
 
-    public Profesor(Long cedulaProfesor, String nombreProfesor, String apellidoProfesor, String correoProfesor) {
+    public Integer getCodigoProfesor() {
+        return codigoProfesor;
+    }
+
+    public void setCodigoProfesor(Integer codigoProfesor) {
+        this.codigoProfesor = codigoProfesor;
+    }
+
+    
+    public Profesor(Integer codigoProfesor, Long cedulaProfesor, String nombreProfesor, String apellidoProfesor, String correoProfesor, String sexo, Date fechaNacimiento) {
+        this.codigoProfesor=codigoProfesor;
         this.cedulaProfesor = cedulaProfesor;
         this.nombreProfesor = nombreProfesor;
         this.apellidoProfesor = apellidoProfesor;
         this.correoProfesor = correoProfesor;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Long getCedulaProfesor() {

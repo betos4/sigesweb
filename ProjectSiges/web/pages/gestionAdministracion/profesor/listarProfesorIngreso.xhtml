@@ -43,6 +43,17 @@
                                     </f:facet>
                                     <h:outputText value="#{item.apellidoProfesor}"/>
                                 </p:column> 
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha de Nacimiento"/>
+                                    </f:facet>
+                                    
+                                    <h:outputText value="#{item.fechaNacimiento}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </h:outputText>
+                                    
+                                </p:column> 
                                 <!--<p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Celular"/>

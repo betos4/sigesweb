@@ -57,6 +57,20 @@
                             <p:inputText id="txtCorreo" value="#{profesorBean.profesor.correoProfesor}" required="true" />
                             <p:message for="txtCorreo"/>
 
+                            <p:outputLabel for="rdbSexo" value="SEXO"/>
+                            <p:selectOneRadio id="rdbSexo" value="#{profesorBean.profesor.sexo}" required="true" >
+                                <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
+                                <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
+
+                            </p:selectOneRadio>
+                            <p:message for="rdbSexo"/>
+
+                            <p:outputLabel for="txtFecha" value="FECHA DE NACIMIENTO"/>
+                            <p:calendar id="txtFecha" value="#{profesorBean.profesor.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true" locale="es" required="true">
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
+                            </p:calendar>
+                            <p:message for="txtFecha"/>
+
                             <p:outputLabel for="cbpFacultad" value="FACULTAD"/> 
                             <p:selectOneMenu id="cbpFacultad" value="#{profesorBean.facultad.idFacultad}" required="true">
                                 <f:selectItem itemLabel="Selecione la facultad" itemValue="" />
@@ -68,7 +82,7 @@
                         </h:panelGrid>
                     </p:fieldset>
 
-                    <p:commandButton  icon="ui-icon-disk" value="GUARDAR" action="#{profesorBean.guardarDatos()}" />
+                    <p:commandButton  icon="ui-icon-disk" value="GUARDAR" update="pgDatos,mensaje" actionListener="#{profesorBean.guardarDatos()}" />
                     <p:commandButton  icon="ui-icon-close" value="ATRAS" action="#{redireccion.atrasProfesor()}" />
 
                 </h:form>
