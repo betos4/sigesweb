@@ -8,6 +8,7 @@ import com.entity.Facultad;
 import com.entity.Profesor;
 import com.manager.ServicioFacultad;
 import com.manager.ServicioProfesor;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,7 +24,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "profesorBean")
 @SessionScoped
-public class ProfesorBean {
+public class ProfesorBean implements Serializable{
 
     private List<Profesor> listaProfesores;
     public Profesor profesor;
@@ -119,6 +120,12 @@ public class ProfesorBean {
         this.profesor = profesor;//va el this para modificar el campo elegido
         return "regreso";
     }
+   
+    public void botonModificarFilaEditable(Profesor profe) {
+        servicioProfesor.actualizar(profe);//va el this para modificar el campo elegido
+        
+    }
+    
     
     public String botonModificar2(Profesor profesor) {
         this.profesor = profesor;//va el this para modificar el campo elegido
