@@ -26,45 +26,13 @@ public class Redireccion {
             // TODO: handle exception
         }
     }
-
-    /*public void getionAdministracion() {
-     try {
-     FacesContext
-     .getCurrentInstance()
-     .getExternalContext()
-     .redirect("/ProjectSiges/pages/gestionAdministracion/gestionAdministracion.xhtml");
-     } catch (Exception e) {
-     // TODO: handle exception
-     }
-     }*/
+    
     public void ingresarProfesor() {
         try {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
                     .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/listarProfesorIngreso.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-    public void eliminarProfesor() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/eliminarProfesor.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-    public void buscarProfesor() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/buscarProfesor.xhtml");
         } catch (Exception e) {
             // TODO: handle exception
         }
@@ -82,46 +50,13 @@ public class Redireccion {
         }
     }
 
-    public void eliminarFacultad() {
+    /***************************************Para el boton que regresa a los modulos**************************************/
+    public void atrasModulos() {
         try {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/facultad/eliminarFacultad.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-    public void buscarFacultad() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/facultad/buscarFacultad.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-    //BOTONES PARA RETROCEDER DE TODAS LAS PAGINAS
-    public void atrasFacultad() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/facultad/listarFacultadIngreso.xhtml");
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-    
-    public void atrasProfesor() {
-        try {
-            FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .redirect("/ProjectSiges/pages/gestionAdministracion/profesor/listarProfesorIngreso.xhtml");
+                    .redirect("/ProjectSiges/pages/gestionAdministracion/modulosAdministracion.xhtml");
         } catch (Exception e) {
             // TODO: handle exception
         }

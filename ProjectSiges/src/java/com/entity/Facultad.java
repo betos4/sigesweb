@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Facultad.findByIdFacultad", query = "SELECT f FROM Facultad f WHERE f.idFacultad = :idFacultad"),
     @NamedQuery(name = "Facultad.findByNombreFacultad", query = "SELECT f FROM Facultad f WHERE f.nombreFacultad = :nombreFacultad")})
 public class Facultad implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,10 +42,10 @@ public class Facultad implements Serializable {
     private Integer idFacultad;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 150)
     @Column(name = "NOMBRE_FACULTAD")
     private String nombreFacultad;
-    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idFacultad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFacultad")
     private Collection<Profesor> profesorCollection;
 
     public Facultad() {
@@ -62,7 +61,7 @@ public class Facultad implements Serializable {
     }
 
     public Integer getIdFacultad() {
-        return this.idFacultad;
+        return idFacultad;
     }
 
     public void setIdFacultad(Integer idFacultad) {
@@ -110,4 +109,5 @@ public class Facultad implements Serializable {
     public String toString() {
         return "com.entity.Facultad[ idFacultad=" + idFacultad + " ]";
     }
+    
 }

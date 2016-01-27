@@ -29,16 +29,41 @@ public abstract class ServicioGenerico<T> {
     }
 
     // METODOS
-    public void insertar(T entidad) {
-        em.persist(entidad);
+    public boolean insertar(T entidad) {
+        boolean flag;
+        try {
+            System.out.println("El valor creado es el siguiente: " + entidad.toString());
+            em.persist(entidad);
+            flag = true;
+        } catch (Exception e) {
+            flag = false;
+        }
+        return flag;
     }
 
-    public void actualizar(T entidad) {
-        em.merge(entidad);
+    public boolean actualizar(T entidad) {
+        boolean flag;
+        try {
+            System.out.println("El valor actualizado es el siguiente: " + entidad.toString());
+            em.merge(entidad);
+            flag = true;
+        } catch (Exception e) {
+            flag = false;
+        }
+        return flag;
     }
 
-    public void eliminar(T entidad) {
-        em.remove(em.merge(entidad));
+    public boolean eliminar(T entidad) {
+        boolean flag;
+        try {
+            System.out.println("El valor eliminado es el siguiente: " + entidad.toString());
+            em.remove(em.merge(entidad));
+            flag = true;
+        } catch (Exception e) {
+            System.out.println(e);
+            flag = false;
+        }
+        return flag;
     }
 
     public void eliminar2(T entidad) {
@@ -56,8 +81,8 @@ public abstract class ServicioGenerico<T> {
     public void flushBase() {
         em.flush();
     }
-    
-     public static SelectItem[] getSeleccionarItems(List<?> entities, boolean selectOne) {
+
+    public static SelectItem[] getSeleccionarItems(List<?> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
         SelectItem[] items = new SelectItem[size];
         int i = 0;
@@ -71,7 +96,6 @@ public abstract class ServicioGenerico<T> {
         return items;
     }
 
-
     @SuppressWarnings({"unchecked", "rawtypes"})
     public List<T> buscarTodos() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
@@ -79,4 +103,3 @@ public abstract class ServicioGenerico<T> {
         return em.createQuery(cq).getResultList();
     }
 }
-

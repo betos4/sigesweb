@@ -8,13 +8,12 @@ import com.entity.Facultad;
 import com.entity.Profesor;
 import com.manager.ServicioFacultad;
 import com.manager.ServicioProfesor;
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 //import javax.faces.bean.SessionScoped;
 
@@ -23,30 +22,26 @@ import javax.faces.context.FacesContext;
  * @author Roberto
  */
 @ManagedBean(name = "profesorBean")
-@SessionScoped
-public class ProfesorBean implements Serializable{
+@RequestScoped
+public class ProfesorBean {
 
     private List<Profesor> listaProfesores;
     public Profesor profesor;
     private Facultad facultad;
     @EJB
-    ServicioProfesor servicioProfesor;
+    ServicioProfesor EJBservicioProfesor;
     @EJB
-    ServicioFacultad servicioFacutlad;
+    ServicioFacultad EJBservicioFacutlad;
     
-    /*PAra realizar la busqueda de un profesor*/
-    private List<Profesor> busquedaProfesor;
-    private int cedula;
-
     /*constructor*/
     public ProfesorBean() {
         facultad = new Facultad();//Es para guardar al crear profesor
-        busquedaProfesor = new ArrayList<Profesor>();
+        profesor = new Profesor();
     }
 
     /*Getter and Setters*/
     public List<Profesor> getListaProfesores() {
-        listaProfesores = servicioProfesor.buscarTodos();
+        listaProfesores = EJBservicioProfesor.buscarTodos();
         return listaProfesores;
     }
 
@@ -70,74 +65,49 @@ public class ProfesorBean implements Serializable{
     public void setFacultad(Facultad facultad) {
         this.facultad = facultad;
     }
-    
-    
-    /*Getters and Setters para lo de la busqueda*/
-    public List<Profesor> getBusquedaProfesor() {
-        return busquedaProfesor;
-    }
-
-    public void setBusquedaProfesor(List<Profesor> busquedaProfesor) {
-        this.busquedaProfesor = busquedaProfesor;
-    }
-
-    public int getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
 
     /*Metodos para realizar el CRUD*/
-    public String guardarDatos() {
-        if (profesor.getCedulaProfesor() != null) {
-            profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
-            servicioProfesor.actualizar(profesor);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"AVISO","Se Registro"));
-            System.out.println("Entro a editar profesor");
-        } else {
-            //profesor.setIdFacultad(servicioFacutlad.buscarPorId(facultad.getIdFacultad()));
-            servicioProfesor.insertar(profesor);
-            System.out.println("Entro a crear profesor");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"AVISO","ERROR"));
-        }
-        return "indice";
-    }
-
-    public String botonInsertar(Profesor profesor) {
-        this.profesor = new Profesor();
-        System.out.println("Entro a Insertar");
-        return "regreso";
-    }
-
-    public String botonEliminar(Profesor profesor) {
-        servicioProfesor.eliminar(profesor);
-        return null;
-    }
-
-    public String botonModificar(Profesor profesor) {
-        this.profesor = profesor;//va el this para modificar el campo elegido
-        return "regreso";
-    }
-   
-    public void botonModificarFilaEditable(Profesor profe) {
-        servicioProfesor.actualizar(profe);//va el this para modificar el campo elegido
+    public void guardarDatos(ActionEvent actionEvent) {
+        String msg;
         
-    }
-    
-    
-    public String botonModificar2(Profesor profesor) {
-        this.profesor = profesor;//va el this para modificar el campo elegido
-        return "buscar";
+        profesor.setIdFacultad(EJBservicioFacutlad.buscarPorId(facultad.getIdFacultad()));
+        if (EJBservicioProfesor.insertar(this.profesor)) {
+            msg = "Se creó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            msg = "Error al crear el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        System.out.println("Entro a crear profesor");
     }
 
-    public List<Profesor> botonBuscar() {
-        busquedaProfesor = servicioProfesor.buscarProfesor(cedula);
-        return busquedaProfesor;
+    public void botonEliminar(ActionEvent actionEvent) {
+        String msg;
+        if (EJBservicioProfesor.eliminar(this.profesor)) {
+            msg = "Se eliminó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            msg = "Error al eliminar el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
-    /*public int getIdFacultad(String nombre) {
-     int aux = servicioFacutlad.buscarFacutadId(nombre);
-     return aux;
-     }*/
+
+    public void botonModificar(ActionEvent actionEvent) {
+        String msg;
+        profesor.setIdFacultad(EJBservicioFacutlad.buscarPorId(facultad.getIdFacultad()));
+        if (EJBservicioProfesor.actualizar(this.profesor)) {
+            msg = "Se modificó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            msg = "Error al modificar el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        System.out.println("Entro a actualizar profesor");
+    }
 }

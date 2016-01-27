@@ -34,4 +34,9 @@ public class ServicioProfesor extends ServicioGenerico<Profesor> {
         q.setParameter("cedulaProfesor", cedula);
         return q.getResultList();
     }
+    
+    public List<Profesor> buscarProfesorFiltro(String campo, String valor) {
+        Query q = em.createQuery("SELECT p FROM Profesor p where p." + campo + "=:" + valor + '"');
+        return q.getResultList();
+    }
 }

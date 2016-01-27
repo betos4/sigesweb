@@ -99,14 +99,6 @@
     text-align: center;
 }
 
-.estiloContenido
-{
-    width: 1024px;
-    height: auto;
-    text-align: center;
-    padding: 8px;
-}
-
 /********************************Estilo para el Footer****************************************/
 #footer
 {
@@ -175,4 +167,24 @@
 .efecto:hover {
     opacity: 1.0;
     filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+/*********************************************Imagenes para los iconos de los botones************************************/
+.ui-state-default .icon-new{
+    background-image: url(../resources/images/new.png);
+}
+.ui-state-default .icon-edit{
+    background-image: url(../resources/images/edit.png);
+}
+.ui-state-default .icon-delete{
+    background-image: url(../resources/images/delete.png);
+}
+.ui-state-default .icon-save{
+    background-image: url(../resources/images/save.png);
+}
+.ui-state-default .icon-cancel{
+    background-image: url(../resources/images/cancel.png);
+}
+.ui-state-default .icon-check{
+    background-image: url(../resources/images/check.png);
 }

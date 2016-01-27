@@ -41,9 +41,13 @@
                             <p:inputText id="txtNombre" value="#{profesorBean.profesor.nombreProfesor}" required="true"/>
                             <p:message for="txtNombre"/>
 
-                            <p:outputLabel for="txtApellido" value="APELLIDO"/>
-                            <p:inputText id="txtApellido" value="#{profesorBean.profesor.apellidoProfesor}" required="true"/>
-                            <p:message for="txtApellido"/>
+                            <p:outputLabel for="txtApellidoPaterno" value="APELLIDO PATERNO"/>
+                            <p:inputText id="txtApellidoPaterno" value="#{profesorBean.profesor.apellidopaternoProfesor}" required="true"/>
+                            <p:message for="txtApellidoPaterno"/>
+                            
+                            <p:outputLabel for="txtApellidoMaterno" value="APELLIDO MATERNO"/>
+                            <p:inputText id="txtApellidoMaterno" value="#{profesorBean.profesor.apellidomaternoProfesor}" required="true"/>
+                            <p:message for="txtApellidoMaterno"/>
 
                             <p:outputLabel for="txtCelular" value="CELULAR"/>
                             <p:inputText id="txtCelular" value="#{profesorBean.profesor.celularProfesor}" required="true"/>
@@ -58,7 +62,7 @@
                             <p:message for="txtCorreo"/>
 
                             <p:outputLabel for="rdbSexo" value="SEXO"/>
-                            <p:selectOneRadio id="rdbSexo" value="#{profesorBean.profesor.sexo}" required="true" >
+                            <p:selectOneRadio id="rdbSexo" value="#{profesorBean.profesor.sexoProfesor}" required="true" >
                                 <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                                 <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
 
@@ -66,7 +70,7 @@
                             <p:message for="rdbSexo"/>
 
                             <p:outputLabel for="txtFecha" value="FECHA DE NACIMIENTO"/>
-                            <p:calendar id="txtFecha" value="#{profesorBean.profesor.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true" locale="es" required="true">
+                            <p:calendar id="txtFecha" value="#{profesorBean.profesor.fechanacimientoProfesor}" pattern="dd-MM-yyyy" mask="true" locale="es" required="true">
                                 <f:convertDateTime pattern="dd-MM-yyyy" />
                             </p:calendar>
                             <p:message for="txtFecha"/>

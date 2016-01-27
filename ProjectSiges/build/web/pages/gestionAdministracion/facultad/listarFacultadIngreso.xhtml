@@ -13,44 +13,162 @@
         <ui:define name="content">
             <div id="subContent">
 
-                <div class="estiloContenido">
-                    <img src="../../../resources/images/logo.png" style="height:60px; width:180px;" />
-                    <br />
-                    Asociación de Profesores de la Politécnica Nacional                    
-                </div>
+                <p:growl id="msgs" showDetail="true" />
 
-                <h:form prependId="false">
-                    <p:panel header="Lista de Facultades" style="margin-top:15px;">
-                        <p:panelGrid columns="1">
-                            <p:dataTable  value="#{facultadBean.listaFacultades}" var="item" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-                                          paginator="true" rows="4" style="margin-bottom:20px"
+                <h:form style="margin-top: 8px; margin-bottom: 8px;">
+                    <p:commandButton id="btnFacultadCreate" update=":formCreate" oncomplete="dialogFacultadCreate.show()" icon="icon-new" title="Crear" value="Crear"/> 
+                    <p:commandButton id="btnFacultadRetroceder" icon="icon-cancel" title="Atras" value="Atras" action="#{redireccion.atrasModulos()}"/> 
+                </h:form>
+
+                <h:form id="formDataTable">
+                    <p:panel header="Lista de Facultades" style="width: 70%; margin: auto;">
+                        <p:panelGrid columns="1" style="width: 90%; margin: auto;">
+                            <p:dataTable  var="facultad" value="#{facultadBean.listaFacultades}" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+                                          paginator="true" paginatorPosition="bottom" rows="4" style="margin-bottom:20px"
                                           rowsPerPageTemplate="4,8,12">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Id"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idFacultad}"/>
+                                    <h:outputText value="#{facultad.idFacultad}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Nombre Facultad"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.nombreFacultad}"/>
+                                    <h:outputText value="#{facultad.nombreFacultad}"/>
                                 </p:column> 
                                 <p:column style="text-align: center;">
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
-                                    <p:commandButton icon="ui-icon-pencil" action="#{facultadBean.botonModificar(item)}" />
-                                    <p:commandButton icon="ui-icon-trash" onclick="return borrarValidar();" action="#{facultadBean.botonEliminar(item)}" />
-                                    <p:commandButton icon="ui-icon-search" action="#" />
+                                    <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="dialogFacultadUpdate.show()" icon="icon-edit" title="Modificar">  
+                                        <f:setPropertyActionListener value="#{facultad}" target="#{facultadBean.facultad}" />  
+                                    </p:commandButton>  
+
+                                    <p:commandButton id="btnDelete" update=":formDelete" oncomplete="dialogFacultadDelete.show()" icon="icon-delete" title="Eliminar">  
+                                        <f:setPropertyActionListener value="#{facultad}" target="#{facultadBean.facultad}" />  
+                                    </p:commandButton> 
+
                                 </p:column>
                             </p:dataTable>
                         </p:panelGrid>
-                        <p:commandButton icon="ui-icon-document" value="INGRESAR" action="#{facultadBean.botonInsertar(item)}" />
-                        <p:commandButton icon="ui-icon-search" value="BUSCAR" action="#" />
                     </p:panel>
                 </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Facultad" widgetVar="dialogFacultadCreate" resizable="false" id="dlgFacultadCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre Facultad " />  
+                            <p:inputText value="#{facultadBean.facultad.nombreFacultad}"/>  
+
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton  update=":formDataTable, :msgs" oncomplete="dialogFacultadCreate.hide()" actionListener="#{facultadBean.botonGuardar(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/> 
+                                <p:commandButton   oncomplete="dialogFacultadCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/> 
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Facultad" widgetVar="dialogFacultadUpdate" resizable="false" id="dlgFacultadUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+                            <h:outputText value="Nombre facutlad: " />  
+                            <h:inputHidden value="#{facultadBean.facultad.idFacultad}"/>
+                            <p:inputText value="#{facultadBean.facultad.nombreFacultad}"/>  
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogFacultadUpdate.hide()" actionListener="#{facultadBean.botonModificar(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/> 
+                                <p:commandButton id="btnUpdateCancelar"  oncomplete="dialogFacultadUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/> 
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Esta seguro de eliminar el registro?"  showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Facultad" severity="alert" widgetVar="dialogFacultadDelete">  
+                        <h:inputHidden value="#{facultadBean.facultad.idFacultad}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable:, :msgs" oncomplete="dialogFacultadDelete.hide()"  
+                                         actionListener="#{facultadBean.botonEliminar(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogFacultadDelete.hide()" type="button" icon="icon-cancel"/>   
+
+                    </p:confirmDialog> 
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
         </ui:define>

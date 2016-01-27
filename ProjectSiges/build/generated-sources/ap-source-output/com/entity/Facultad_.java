@@ -6,7 +6,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2016-01-12T18:03:29")
+@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2016-01-26T16:39:57")
 @StaticMetamodel(Facultad.class)
 public class Facultad_ { 
 

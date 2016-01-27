@@ -6,11 +6,13 @@ package com.bean;
 
 import com.manager.ServicioFacultad;
 import com.entity.Facultad;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 //import javax.faces.bean.ViewScoped;
 
 /**
@@ -18,31 +20,21 @@ import javax.faces.model.SelectItem;
  * @author Roberto
  */
 @ManagedBean(name = "facultadBean")
-@SessionScoped
+@RequestScoped
 public class FacultadBean {
+
     @EJB
     private ServicioFacultad EJBservicioFacultad;
-
     private Facultad facultad;
     private List<Facultad> listaFacultades;
     //@EJB
     //ServicioFacultad EJBservicioFacultad;
-    private int selectedItemIndex;
+    //private int selectedItemIndex;
 
-    
-    
     public FacultadBean() {
+        facultad = new Facultad();
         //facultades = new ArrayList<Facultad>();
     }
-    
-    public Facultad getSelected() {
-        if (facultad == null) {
-            facultad = new Facultad();
-            selectedItemIndex = -1;
-        }
-        return facultad;
-    }
-
 
     /*Getters and setters*/
     public Facultad getFacultad() {
@@ -62,39 +54,46 @@ public class FacultadBean {
         this.listaFacultades = listaFacultades;
     }
 
-    //Metodos Buscar en Combobox
-    public SelectItem[] getFacultadesDisponiblesSelecccionarUno() {
-        return ServicioFacultad.getSeleccionarItems(EJBservicioFacultad.buscarTodos(), true);
-        
-        //return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
-    }
-    
-    
     /*METODOS PARA EL CRUD DE FACULTAD*/
-    public String botonGuardar() {
-        if (facultad.getIdFacultad() != null) {
-            EJBservicioFacultad.actualizar(facultad);
-            System.out.println("Entro a editar facultad");
+    public void botonGuardar(ActionEvent actionEvent) {
+        String msg;
+
+        if (EJBservicioFacultad.insertar(this.facultad)) {
+            msg = "Se creó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
-            EJBservicioFacultad.insertar(facultad);
-            System.out.println("Entro a crear facultad");
+            msg = "Error al crear el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        return "indice";
+        System.out.println("Entro a crear facultad");
     }
 
-    public String botonInsertar(Facultad facultad) {
-        this.facultad = new Facultad();
-        System.out.println("Entro a Insertar");
-        return "regreso";
+    public void botonEliminar(ActionEvent actionEvent) {
+        String msg;
+        if (EJBservicioFacultad.eliminar(this.facultad)) {
+            msg = "Se eliminó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            msg = "Error al eliminar el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
 
-    public String botonEliminar(Facultad facultad) {
-        EJBservicioFacultad.eliminar(facultad);
-        return null;
-    }
-    
-    public String botonModificar(Facultad facultad) {
-        this.facultad = facultad;//va el this para modificar el campo elegido
-        return "regreso";
+    public void botonModificar(ActionEvent actionEvent) {
+        String msg;
+        if (EJBservicioFacultad.actualizar(this.facultad)) {
+            msg = "Se modificó correctamente el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            msg = "Error al modificar el registro.";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        System.out.println("Entro a actualizar facultad");
     }
 }
