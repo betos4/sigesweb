@@ -188,3 +188,9 @@
 .ui-state-default .icon-check{
     background-image: url(../resources/images/check.png);
 }
+
+.ui-state-default .icon-plusthick {
+    background-image: url(../resources/images/agregar.png);
+    
+}
+

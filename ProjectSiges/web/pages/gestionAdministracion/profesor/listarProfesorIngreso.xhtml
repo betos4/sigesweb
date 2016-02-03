@@ -27,21 +27,21 @@
                                           paginator="true" rows="4" paginatorPosition="bottom" style="margin-bottom:20px;"
                                           rowsPerPageTemplate="4,8,12" editable="true">
 
-                                <p:column filterBy="#{profesor.cedulaProfesor}" style="width:14%;">
+                                <p:column filterBy="#{profesor.cedulaProfesor}" filterMatchMode="contains" style="width:14%;">
                                     <f:facet name="header">
                                         <h:outputText value="Cédula"/>
                                     </f:facet>
                                     <h:outputText value="#{profesor.cedulaProfesor}"/>
                                 </p:column>
 
-                                <p:column filterBy="#{profesor.nombreProfesor}" style="width:27%;">
+                                <p:column filterBy="#{profesor.nombreProfesor}" filterMatchMode="contains" style="width:27%;">
                                     <f:facet name="header">
                                         <h:outputText value="Nombre"/>
                                     </f:facet>
                                     <h:outputText value="#{profesor.nombreProfesor}"/>
                                 </p:column>
 
-                                <p:column filterBy="#{profesor.apellidopaternoProfesor}" style="width:15%;">
+                                <p:column filterBy="#{profesor.apellidopaternoProfesor}" filterMatchMode="contains" style="width:15%;">
                                     <f:facet name="header">
                                         <h:outputText value="Apellido"/>
                                     </f:facet>
@@ -75,7 +75,7 @@
                                     <h:outputText value="#{item.celularProfesor}" />
                                 </p:column>-->
 
-                                <p:column filterBy="#{profesor.idFacultad.nombreFacultad}" style="width:15%;">
+                                <p:column filterBy="#{profesor.idFacultad.nombreFacultad}" filterMatchMode="contains" style="width:15%;">
                                     <f:facet name="header">
                                         <h:outputText value="Facultad"/>
                                     </f:facet>
@@ -94,6 +94,35 @@
                                         <f:setPropertyActionListener value="#{profesor}" target="#{profesorBean.profesor}" />  
                                     </p:commandButton> 
 
+
+
+
+
+
+
+
+                                    <p:splitButton  icon="icon-plusthick">
+                                        <p:menuitem  value="Familiar" icon="ui-icon-home" />
+                                        <p:menuitem  value="Seguros" icon="ui-icon-bookmark" />
+                                        <p:menuitem  value="Aportes" icon="ui-icon-calculator" />
+                                        <p:separator />
+                                        <p:menuitem value="Detalle" icon="ui-icon-clipboard " />
+                                    </p:splitButton>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 </p:column>
 
 
@@ -102,20 +131,20 @@
                                         <h:outputText value="Nombre:" />
                                         <h:outputText value="#{item.nombreProfesor}"/>
                                     </p:dialog>-->
-                                   
+
 
 
                             </p:dataTable>
                         </p:panelGrid>
                     </p:panel>
                 </h:form>
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
                 <h:form id="formCreate">
                     <p:dialog header="Crear Profesor" widgetVar="dialogProfesorCreate" resizable="false" id="dlgProfesorCreate"  
                               showEffect="fade" hideEffect="explode" modal="true">  
@@ -123,36 +152,36 @@
 
                             <h:outputText value="Cédula: " />  
                             <p:inputText value="#{profesorBean.profesor.cedulaProfesor}"/>
-                            
+
                             <h:outputText value="Nombre: " />  
                             <p:inputText value="#{profesorBean.profesor.nombreProfesor}"/>
-                            
+
                             <h:outputText value="Apellido Paterno" />  
                             <p:inputText value="#{profesorBean.profesor.apellidopaternoProfesor}"/>
-                            
+
                             <h:outputText value="Apellido Materno " />  
                             <p:inputText value="#{profesorBean.profesor.apellidomaternoProfesor}"/>
-                            
+
                             <h:outputText value="Fecha de Nacimiento: " />  
                             <p:calendar value="#{profesorBean.profesor.fechanacimientoProfesor}" pattern="dd-MM-yyyy" locale="es" required="true">
                                 <f:convertDateTime pattern="dd-MM-yyyy" />
                             </p:calendar>
-                            
+
                             <h:outputText value="Correo: " />  
                             <p:inputText value="#{profesorBean.profesor.correoProfesor}"/>
-                            
+
                             <h:outputText value="Celular " />  
                             <p:inputText value="#{profesorBean.profesor.celularProfesor}"/>
-                            
+
                             <h:outputText value="Teléfono: " />  
                             <p:inputText value="#{profesorBean.profesor.telefonoProfesor}"/>
-                            
+
                             <h:outputText value="Genero: " />
                             <p:selectOneRadio value="#{profesorBean.profesor.sexoProfesor}" required="true" >
                                 <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                                 <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
                             </p:selectOneRadio>
-                            
+
                             <h:outputText value="Facultad: " />  
                             <p:selectOneMenu value="#{profesorBean.facultad.idFacultad}">
                                 <f:selectItem itemLabel="Selecione la facultad" itemValue="" />
@@ -160,8 +189,8 @@
                                                itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >  
                                 </f:selectItems>
                             </p:selectOneMenu>
-                            
-                            
+
+
 
                             <f:facet name="footer">
                                 <p:separator/>
@@ -171,61 +200,61 @@
                         </h:panelGrid>  
                     </p:dialog>  
                 </h:form>
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
                 <h:form id="formUpdate">
                     <p:dialog header="Modificar Profesor" widgetVar="dialogProfesorUpdate" resizable="false" id="dlgProfesorUpdate"  
                               showEffect="fade" hideEffect="explode" modal="true">  
                         <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
                             <!--Enviando el id respectivo-->
                             <h:inputHidden value="#{profesorBean.profesor.codigoProfesor}"/>
-                            
+
                             <h:outputText value="Cédula: " />  
-                            <p:inputText value="#{profesorBean.profesor.cedulaProfesor}"/>
-                            
+                            <p:inputText value="#{profesorBean.profesor.cedulaProfesor}" readonly="readonly"/>
+
                             <h:outputText value="Nombre: " />  
-                            <p:inputText value="#{profesorBean.profesor.nombreProfesor}"/>
-                            
+                            <p:inputText value="#{profesorBean.profesor.nombreProfesor}" disabled="disabled"/>
+
                             <h:outputText value="Apellido Paterno" />  
                             <p:inputText value="#{profesorBean.profesor.apellidopaternoProfesor}"/>
-                            
+
                             <h:outputText value="Apellido Materno " />  
                             <p:inputText value="#{profesorBean.profesor.apellidomaternoProfesor}"/>
-                            
+
                             <h:outputText value="Fecha de Nacimiento: " />  
                             <p:calendar value="#{profesorBean.profesor.fechanacimientoProfesor}" pattern="dd-MM-yyyy" locale="es" required="true">
                                 <f:convertDateTime pattern="dd-MM-yyyy" />
                             </p:calendar>
-                            
+
                             <h:outputText value="Correo: " />  
                             <p:inputText value="#{profesorBean.profesor.correoProfesor}"/>
-                            
+
                             <h:outputText value="Celular " />  
                             <p:inputText value="#{profesorBean.profesor.celularProfesor}"/>
-                            
+
                             <h:outputText value="Teléfono: " />  
                             <p:inputText value="#{profesorBean.profesor.telefonoProfesor}"/>
-                            
+
                             <h:outputText value="Genero: " />
                             <p:selectOneRadio value="#{profesorBean.profesor.sexoProfesor}" required="true" >
                                 <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                                 <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
                             </p:selectOneRadio>
-                            
-                            <h:outputText value="Facultad: " />  
+
+                            <h:outputText value="Facultad: " />
                             <p:selectOneMenu value="#{profesorBean.facultad.idFacultad}">
                                 <f:selectItem itemLabel="Selecione la facultad" itemValue="" />
                                 <f:selectItems value="#{facultadBean.listaFacultades}" var="facu"
                                                itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >  
                                 </f:selectItems>
                             </p:selectOneMenu>
-                            
+
                             <f:facet name="footer">
                                 <p:separator/>
                                 <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogProfesorUpdate.hide()" actionListener="#{profesorBean.botonModificar(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/> 
@@ -234,10 +263,10 @@
                         </h:panelGrid>  
                     </p:dialog>  
                 </h:form>
-                
-                
-                
-                
+
+
+
+
                 <h:form id="formDelete">
                     <p:confirmDialog id="confirmDialog" message="Esta seguro de eliminar el registro?"  showEffect="fade" hideEffect="explode"
                                      header="Eliminar Profesor" severity="alert" widgetVar="dialogProfesorDelete">  
@@ -248,8 +277,8 @@
 
                     </p:confirmDialog> 
                 </h:form>
-                
-                
+
+
 
             </div>
         </ui:define>    
