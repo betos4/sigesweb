@@ -9,11 +9,17 @@
 
 
 
-    <ui:composition template="/plantillas/plantillaIngreso.xhtml">
+    <ui:composition template="/plantillas/plantilla.xhtml">
         <ui:define name="content">
             <div id="subContent">
 
                 <p:growl id="msgs" showDetail="true" />
+
+                <div align="center" style="margin: 5px 0 25px 0;">
+                    <p:fieldset legend="SIGES-ADEPON">
+                        <h:outputText value="Profesores"/><br/>
+                    </p:fieldset>
+                </div>
 
                 <h:form style="margin-top: 5px">
                     <p:commandButton id="btnProfesorCreate" update=":formCreate" oncomplete="dialogProfesorCreate.show()" icon="icon-new" title="Crear" value="Crear"/> 

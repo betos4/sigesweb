@@ -8,7 +8,7 @@
     <h:head>
         <h:outputStylesheet library="css" name="estilo.css"/>
         <h:outputScript library="js" name="spanishLocale.js"/>
-                
+
         <title><ui:insert name="title">Default title</ui:insert></title>
     </h:head>
 
@@ -20,17 +20,18 @@
             </ui:insert>
         </div>
 
-
-        <div id="content">
-            <ui:insert name="content">
-                Content area.  See comments below this line in the source.
-                <!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-                <!-- <div> -->
-                <!-- <ui:include src="content.xhtml"/> -->  
-                <!-- </div> -->
-            </ui:insert>
+        <div id="wrapper">
+            <div id="content">
+                <ui:insert name="content">
+                    Content area.  See comments below this line in the source.
+                    <!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+                    <!-- <div> -->
+                    <!-- <ui:include src="content.xhtml"/> -->  
+                    <!-- </div> -->
+                </ui:insert>
+            </div>
         </div>
-
+        
         <div id="footer">
             <ui:insert name="footer">
                 <ui:include src="footer.xhtml"/>
