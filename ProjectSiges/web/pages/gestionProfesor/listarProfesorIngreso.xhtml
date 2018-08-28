@@ -9,29 +9,23 @@
 
 
 
-    <ui:composition template="/plantillas/plantilla.xhtml">
+    <ui:composition template="/plantillas/plantillaIngreso.xhtml">
         <ui:define name="content">
             <div id="subContent">
 
-                <p:growl id="msgs" showDetail="true" />
-
-                <div align="center" style="margin: 5px 0 25px 0;">
-                    <p:fieldset legend="SIGES-ADEPON">
-                        <h:outputText value="Profesores"/><br/>
-                    </p:fieldset>
-                </div>
+                <p:growl id="msgs" showDetail="true" />               
 
                 <h:form style="margin-top: 5px">
-                    <p:commandButton id="btnProfesorCreate" update=":formCreate" oncomplete="dialogProfesorCreate.show()" icon="icon-new" title="Crear" value="Crear"/> 
+                    <p:commandButton id="btnProfesorCreate" update=":formCreate" type="button" onclick="PF('dialogProfesorCreate').show();" icon="icon-new" title="Crear" value="Crear"/> 
                     <p:commandButton id="btnProfesorRetroceder" icon="icon-cancel" title="Atras" value="Atras" action="#{redireccion.atrasModulos()}"/> 
                 </h:form>
 
                 <h:form id="formDataTable">
-                    <p:panel header="Lista de Profesores" style="margin-top:15px;">
+                    <p:panel header="Lista de Formularios" style="margin-top:15px;">
                         <p:panelGrid columns="1" style="width: 100%;">
                             <p:dataTable  var="profesor" value="#{profesorBean.listaProfesores}" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
                                           paginator="true" rows="4" paginatorPosition="bottom" style="margin-bottom:20px;"
-                                          rowsPerPageTemplate="4,8,12" editable="true">
+                                          rowsPerPageTemplate="4,8,12" editable="true" emptyMessage="No existen registros">
 
                                 <p:column filterBy="#{profesor.cedulaProfesor}" filterMatchMode="contains" style="width:14%;">
                                     <f:facet name="header">
@@ -83,7 +77,7 @@
 
                                 <p:column filterBy="#{profesor.idFacultad.nombreFacultad}" filterMatchMode="contains" style="width:15%;">
                                     <f:facet name="header">
-                                        <h:outputText value="Facultad"/>
+                                        <h:outputText value="Gestor"/>
                                     </f:facet>
                                     <h:outputText value="#{profesor.idFacultad.nombreFacultad}"/>
                                 </p:column>
@@ -92,12 +86,15 @@
                                     <f:facet name="header">
                                         <h:outputText value="Opciones"/>
                                     </f:facet>
-                                    <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="dialogProfesorUpdate.show()" icon="icon-edit" title="Modificar">  
+                                    <p:commandButton id="btnUpdate" update=":formUpdate" type="button" onclick="PF('dialogProfesorUpdate').show();" icon="icon-edit" title="Modificar">  
                                         <f:setPropertyActionListener value="#{profesor}" target="#{profesorBean.profesor}" />  
                                     </p:commandButton>  
 
                                     <p:commandButton id="btnDelete" update=":formDelete" oncomplete="dialogProfesorDelete.show()" icon="icon-delete" title="Eliminar">  
                                         <f:setPropertyActionListener value="#{profesor}" target="#{profesorBean.profesor}" />  
+                                    </p:commandButton> 
+                                    <p:commandButton id="btnImprimir" icon="icon-imprimir" title="Imprimir">  
+                                        
                                     </p:commandButton> 
 
 
@@ -107,13 +104,13 @@
 
 
 
-                                    <p:splitButton  icon="icon-plusthick">
+<!--                                    <p:splitButton  icon="icon-plusthick">
                                         <p:menuitem  value="Familiar" icon="ui-icon-home" />
                                         <p:menuitem  value="Seguros" icon="ui-icon-bookmark" />
                                         <p:menuitem  value="Aportes" icon="ui-icon-calculator" />
                                         <p:separator />
                                         <p:menuitem value="Detalle" icon="ui-icon-clipboard " />
-                                    </p:splitButton>
+                                    </p:splitButton>-->
 
 
 
@@ -188,9 +185,9 @@
                                 <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
                             </p:selectOneRadio>
 
-                            <h:outputText value="Facultad: " />  
+                            <h:outputText value="Gestor " />  
                             <p:selectOneMenu value="#{profesorBean.facultad.idFacultad}">
-                                <f:selectItem itemLabel="Selecione la facultad" itemValue="" />
+                                <f:selectItem itemLabel="Selecione el gestor" itemValue="" />
                                 <f:selectItems value="#{facultadBean.listaFacultades}" var="facu"
                                                itemValue="#{facu.idFacultad}" itemLabel="#{facu.nombreFacultad}" >  
                                 </f:selectItems>

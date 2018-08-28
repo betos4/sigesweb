@@ -32,12 +32,15 @@ public class FacultadBean {
     //private int selectedItemIndex;
 
     public FacultadBean() {
-        facultad = new Facultad();
+        //facultad = new Facultad();
         //facultades = new ArrayList<Facultad>();
     }
 
     /*Getters and setters*/
     public Facultad getFacultad() {
+        if(facultad == null) {
+            facultad = new Facultad();
+        }
         return facultad;
     }
 
@@ -57,6 +60,7 @@ public class FacultadBean {
     /*METODOS PARA EL CRUD DE FACULTAD*/
     public void botonGuardar(ActionEvent actionEvent) {
         String msg;
+        System.out.println("Entro a crear facultad");
 
         if (EJBservicioFacultad.insertar(this.facultad)) {
             msg = "Se creó correctamente el registro.";
@@ -66,8 +70,7 @@ public class FacultadBean {
             msg = "Error al crear el registro.";
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
             FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-        System.out.println("Entro a crear facultad");
+        }        
     }
 
     public void botonEliminar(ActionEvent actionEvent) {

@@ -16,20 +16,18 @@
 
                     <h:form>
                         <p:panel styleClass="session" header="Iniciar">
-                            <h:panelGrid columns="3">
+                            <h:panelGrid columns="2">
                                 <p:outputLabel value="Usuario" />
-                                <p:inputText id="user" required="true" requiredMessage="Campo Obligatorio">
-                                </p:inputText>
+                                <p:inputText id="user" required="true" requiredMessage="Campo Obligatorio" />
                                 <p:message for="user" />
-                                <p:outputLabel for="country" value="Tipo Usuario " />
+<!--                                <p:outputLabel for="country" value="Tipo Usuario " />
 
                                 <p:selectOneMenu id="country" style="width:195px">
                                     <f:selectItem itemLabel="Administrador" itemValue="" noSelectionOption="true" />
-                                </p:selectOneMenu>
-                                <br /><!-- Salto de columna -->							
+                                </p:selectOneMenu>-->
+<!--                                <br /> Salto de columna 							-->
                                 <p:outputLabel value="Password" />
-                                <p:inputText id="password" required="true" type="password" requiredMessage="Campo Obligatorio" >
-                                </p:inputText>
+                                <p:inputText id="password" required="true" type="password" requiredMessage="Campo Obligatorio" />
                                 <p:message for="password" />
 
                             </h:panelGrid>	
@@ -53,7 +51,6 @@
                             <h2><b>Usuario</b></h2>
                             <ul>
                                 <li>Si es la primera ves que ingresa, usted debe cambiar su contraseña de defecto por la suya propia.</li>
-                                <li>El ingreso incorrecto de su cédula o contraseña repetitivamente provocará que el sistema lo bloqueé por su seguridad, en este caso usted deberá acercarse a la ADEPON, para solicitar que activen nuevamente su cuenta.</li>
                                 <li>Recuerde que su contraseña es intransferible. Por lo tanto, no proporcione su contraseña a otras personas.</li>
                             </ul>						
                         </h:panelGrid>					

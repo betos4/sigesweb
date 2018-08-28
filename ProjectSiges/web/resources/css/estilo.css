@@ -7,7 +7,7 @@
     width:100%; 
     min-width:1024px; /*Ancho minimo que puede estar la imagen*/
     height:200px;
-    border-bottom:5px solid #A60000; /*Linea del borde del header*/
+    border-bottom:5px solid #EA8009; /*Linea del borde del header*/
     overflow:hidden; /*Se encuadra o ajusta la imagen*/
     position:relative; 
     z-index:1; /*Traer la imagen al frente (1), o para mandar atras del texto (-1)*/
@@ -27,7 +27,7 @@
     float:left; 
     margin:40px 0 0 0; 
     padding:0; 
-    background:url(../resources/images/epnLogo.png) top left no-repeat; 
+    /*background:url(../resources/images/epnLogo.png) top left no-repeat; */
 
 }
 
@@ -37,7 +37,7 @@
     float:left; 
     margin:40px 0 0 0; 
     padding:0; 
-    background:url(../resources/images/adeponLogo.png) top left no-repeat; 
+    background:url(../resources/images/logoSiccec.png) top left no-repeat; 
 }
 
 .titulo {
@@ -53,7 +53,7 @@
     width: 500px;
     letter-spacing: 15px;
     font-size: xx-large;
-    color: slategray;
+    color: #EA8009;
 }
 
 .subEncabezado
@@ -108,7 +108,7 @@
     min-width: 1024px;
     height: 60px;
     text-align: center;
-    border-top: 5px solid #A60000;
+    border-top: 5px solid #EA8009;
     padding: 20px 0 0;
 }
 
@@ -191,6 +191,11 @@
 
 .ui-state-default .icon-plusthick {
     background-image: url(../resources/images/agregar.png);
+    
+}
+
+.ui-state-default .icon-imprimir {
+    background-image: url(../resources/images/imprimir.png);
     
 }
 

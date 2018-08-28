@@ -27,6 +27,17 @@ public class Redireccion {
         }
     }
     
+    public void ingresarFacultad() {
+        try {
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("/ProjectSiges/modulo.xhtml");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    
     /***************************************Para el boton que regresa a los modulos**************************************/
     public void atrasModulos() {
         try {

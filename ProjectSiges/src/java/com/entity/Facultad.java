@@ -40,11 +40,24 @@ public class Facultad implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_FACULTAD")
     private Integer idFacultad;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "NOMBRE_FACULTAD")
     private String nombreFacultad;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "CONTRASENIA")
+    private String contrasenia;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "ROL")
+    private String rol;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFacultad")
     private Collection<Profesor> profesorCollection;
 
@@ -74,6 +87,22 @@ public class Facultad implements Serializable {
 
     public void setNombreFacultad(String nombreFacultad) {
         this.nombreFacultad = nombreFacultad;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @XmlTransient
